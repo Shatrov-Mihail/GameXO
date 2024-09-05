@@ -1,0 +1,36 @@
+.gameLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f8fc0e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.newGame {
+  font-size: 20px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #06cc20;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px 20px 5px 20px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.newGame:hover {
+  background-color: #e6f51d;
+}
+
+.newGame[data-player="X"] {
+  color: #e4fd00;
+}
+
+.newGame[data-player="O"] {
+  color: #1976d2;
+}
