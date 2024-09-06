@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import InformationLayout from "./InformationLayout";
 
-function Information({ store }) {
-  const [state, setState] = useState(store.getState());
-
-  useEffect(() => {
-    const unsubscribe = store.subscribe(() => setState(store.getState()));
-    return () => unsubscribe();
-  }, [store]);
+function Information({ state }) {
+  const { isDraw, isGameEnded, currentPlayer } = state;
 
   let status;
-  if (state.isDraw) {
+  if (isDraw) {
     status = "Ничья";
-  } else if (state.isGameEnded) {
-    status = `Победа: ${state.currentPlayer}`;
+  } else if (isGameEnded) {
+    status = `Победа: ${currentPlayer}`;
   } else {
-    status = `Ходит: ${state.currentPlayer}`;
+    status = `Ходит: ${currentPlayer}`;
   }
 
   return <InformationLayout status={status} />;

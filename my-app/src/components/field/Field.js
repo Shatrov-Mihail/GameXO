@@ -1,29 +1,28 @@
 import React from 'react';
 import FieldLayout from './FieldLayout';
 
-function Field({ store }) {
-  const state = store.getState();
+function Field({ state, dispatch }) {
   const { field, currentPlayer, isGameEnded } = state;
 
   const handleClick = (index) => {
     if (field[index] === '' && !isGameEnded) {
       const newField = field.slice();
       newField[index] = currentPlayer;
-      store.dispatch({ type: 'SET_FIELD', payload: newField });
+      dispatch({ type: 'SET_FIELD', payload: newField });
 
       const winner = calculateWinner(newField);
       if (winner) {
-        store.dispatch({ type: 'SET_IS_GAME_ENDED', payload: true });
+        dispatch({ type: 'SET_IS_GAME_ENDED', payload: true });
         return;
       }
 
       if (newField.every((cell) => cell !== '')) {
-        store.dispatch({ type: 'SET_IS_DRAW', payload: true });
-        store.dispatch({ type: 'SET_IS_GAME_ENDED', payload: true });
+        dispatch({ type: 'SET_IS_DRAW', payload: true });
+        dispatch({ type: 'SET_IS_GAME_ENDED', payload: true });
         return;
       }
 
-      store.dispatch({
+      dispatch({
         type: 'SET_CURRENT_PLAYER',
         payload: currentPlayer === 'X' ? 'O' : 'X',
       });
