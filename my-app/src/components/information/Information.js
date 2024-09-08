@@ -1,8 +1,9 @@
 import React from "react";
 import InformationLayout from "./InformationLayout";
+import { store } from "../../store";
 
-function Information({ state }) {
-  const { isDraw, isGameEnded, currentPlayer } = state;
+function Information() {
+  const { isDraw, isGameEnded, currentPlayer } = store.getState();
 
   let status;
   if (isDraw) {

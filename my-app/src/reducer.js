@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
 	field: Array(9).fill(''),
 	currentPlayer: 'X',
 	isGameEnded: false,
@@ -6,15 +6,17 @@ const initialState = {
 	};
 
 function gameReducer(state = initialState, action) {
-	switch (action.type) {
+	const { type, payload } = action;
+
+	switch (type) {
 		case 'SET_FIELD':
-			return { ...state, field: action.payload };
+			return { ...state, field: payload };
 		case 'SET_CURRENT_PLAYER':
-			return { ...state, currentPlayer: action.payload };
+			return { ...state, currentPlayer: payload };
 		case 'SET_IS_GAME_ENDED':
-			return { ...state, isGameEnded: action.payload };
+			return { ...state, isGameEnded: payload };
 		case 'SET_IS_DRAW':
-			return { ...state, isDraw: action.payload };
+			return { ...state, isDraw: payload };
 		case 'RESTART_GAME':
 			return initialState;
 		default:

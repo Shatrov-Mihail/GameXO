@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GameLayout from "./GameLayout";
-import store from "./store";
+import { store } from "./store";
 
 function Game() {
   const [state, setState] = useState(store.getState());
@@ -9,10 +9,12 @@ function Game() {
     const unsubscribe = store.subscribe(() => {
       setState(store.getState());
     });
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
-  return <GameLayout state={state} dispatch={store.dispatch} />;
+  return <GameLayout state={state} />;
 }
 
 export default Game;

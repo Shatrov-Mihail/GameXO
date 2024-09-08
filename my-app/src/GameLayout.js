@@ -2,16 +2,17 @@ import React from "react";
 import styles from "./GameLayout.module.css";
 import Information from "./components/information/Information";
 import Field from "./components/field/Field";
+import { store } from "./store";
 
-function GameLayout({ state, dispatch }) {
+function GameLayout() {
   const handleReset = () => {
-    dispatch({ type: "RESTART_GAME" });
+    store.dispatch({ type: "RESTART_GAME" });
   };
 
   return (
     <div className={styles.gameLayout}>
-      <Information state={state} />
-      <Field state={state} dispatch={dispatch} />
+      <Information />
+      <Field />
       <button className={styles.newGame} onClick={handleReset}>
         Начать заново
       </button>
