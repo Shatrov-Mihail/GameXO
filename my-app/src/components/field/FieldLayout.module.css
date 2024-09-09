@@ -1,10 +1,4 @@
-.fieldLayout {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  gap: 2px;
-}
-
+/* Удален неиспользуемый класс .fieldLayout */
 .button {
   width: 100px;
   height: 100px;

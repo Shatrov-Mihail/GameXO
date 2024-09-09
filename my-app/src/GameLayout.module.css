@@ -22,11 +22,3 @@
 .newGame:hover {
   background-color: #0056b3;
 }
-
-.newGame[data-player="X"] {
-  color: #e4fd00;
-}
-
-.newGame[data-player="O"] {
-  color: #1976d2;
-}

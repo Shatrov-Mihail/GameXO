@@ -21,7 +21,6 @@ const createStore = (gameReducer) => {
 
 export const store = createStore(gameReducer);
 
-store.dispatch({});
 
 
 
