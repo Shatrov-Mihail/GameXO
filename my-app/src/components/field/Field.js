@@ -1,32 +1,31 @@
-import React from 'react';
-import FieldLayout from './FieldLayout';
-import { store } from '../../store';
+import React from "react";
+import FieldLayout from "./FieldLayout";
+import { useSelector, useDispatch } from "react-redux";
+import { setField, setIsGameEnded, setIsDrew, setCurrentPlayer } from "../actions";
 
 function Field() {
-  const { field, currentPlayer, isGameEnded } = store.getState();
+  const { field, currentPlayer, isGameEnded } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const handleClick = (index) => {
-    if (field[index] === '' && !isGameEnded) {
+    if (field[index] === "" && !isGameEnded) {
       const newField = field.slice();
       newField[index] = currentPlayer;
-      store.dispatch({ type: 'SET_FIELD', payload: newField });
+     dispatch(setField(newField));
 
       const winner = calculateWinner(newField);
       if (winner) {
-        store.dispatch({ type: 'SET_IS_GAME_ENDED', payload: true });
+        dispatch(setIsGameEnded(true));
         return;
       }
 
-      if (newField.every((cell) => cell !== '')) {
-        store.dispatch({ type: 'SET_IS_DRAW', payload: true });
-        store.dispatch({ type: 'SET_IS_GAME_ENDED', payload: true });
+      if (newField.every((cell) => cell !== "")) {
+        dispatch(setIsDrew(true));
+        dispatch(setIsGameEnded(true));
         return;
       }
 
-      store.dispatch({
-        type: 'SET_CURRENT_PLAYER',
-        payload: currentPlayer === 'X' ? 'O' : 'X',
-      });
+      dispatch(setCurrentPlayer(currentPlayer === "X" ? "O" : "X"));
     }
   };
 

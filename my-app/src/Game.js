@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
 import GameLayout from "./GameLayout";
-import { store } from "./store";
+import { useSelector } from "react-redux";
 
 function Game() {
-  const [state, setState] = useState(store.getState());
-
-  useEffect(() => {
-    const unsubscribe = store.subscribe(() => {
-      setState(store.getState());
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
+  const state = useSelector((state) => state);
+	
   return <GameLayout state={state} />;
 }
 

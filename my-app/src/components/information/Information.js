@@ -1,9 +1,9 @@
 import React from "react";
 import InformationLayout from "./InformationLayout";
-import { store } from "../../store";
+import { useSelector } from "react-redux";
 
 function Information() {
-  const { isDraw, isGameEnded, currentPlayer } = store.getState();
+  const { isDraw, isGameEnded, currentPlayer } = useSelector((state) => state);
 
   let status;
   if (isDraw) {
